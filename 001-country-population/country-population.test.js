@@ -24,5 +24,14 @@ describe('country-population', () => {
 
 			assert.strictEqual(result, 253773772);
 		});
-	})
+	});
+
+
+	describe('.avarageUsPopulationBetweenYear1990To2000()', () => {
+		it('returns a avarage number of people lived in united states during 1990 and 2000', () => {
+			const result = countryPopulation.avarageUsPopulationBetweenYear1990To2000();
+
+			assert.strictEqual(result, 266140765);
+		});
+	});
 });
