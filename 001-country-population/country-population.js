@@ -33,7 +33,17 @@ function howManyMoreMillionPeopleLivedIndiaVsUsIn2010() {
 
 // Over all the provided years, how many people lived in united states on avarage.
 function avarageUsPopulationFromAllPeriod() {
-	throw new Error('Not implemented');
+
+	let peopleCount = 0;
+	let yearsCount = 0;
+
+	for(const countryYearPopulation of data){
+		if(countryYearPopulation.countryiso3code === "USA"){
+			peopleCount += countryYearPopulation.value;
+			yearsCount++;
+		}
+	}
+	return Math.round(peopleCount / yearsCount);
 }
 
 // How many people live in India between years 1990-2000 on avarage.
