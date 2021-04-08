@@ -1,12 +1,12 @@
-const data = require('./united-states-population.json');
+const data = require('./country-population.json');
 
 // We need a number, how many people lived in india in year 1990.
 function indiaPopulationInYear1990() {
 	throw new Error('Not implemented');
 }
 
-// How many more people lived in india in 2020 than united states.
-function howManyMoreLivedIndiaVsUsIn2020() {
+// How many more million people lived in india in 2010 than united states.
+function howManyMoreMillionPeopleLivedIndiaVsUsIn2010() {
 	throw new Error('Not implemented');
 }
 
@@ -21,7 +21,8 @@ function avarageUsPopulationBetweenYear1990To2000() {
 }
 
 module.exports = {
-	usPopulationInYear1990,
-	avarageUsPopulationOverAllData,
+	indiaPopulationInYear1990,
+	howManyMoreMillionPeopleLivedIndiaVsUsIn2010,
+	avarageUsPopulationFromAllPeriod,
 	avarageUsPopulationBetweenYear1990To2000,
 };
