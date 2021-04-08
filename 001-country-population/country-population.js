@@ -2,7 +2,12 @@ const data = require('./country-population.json');
 
 // We need a number, how many people lived in india in year 1990.
 function indiaPopulationInYear1990() {
-	throw new Error('Not implemented');
+	for(const countryYearPopulation of data){
+		if(countryYearPopulation.date === "1990" && countryYearPopulation.countryiso3code === "IND"){
+			return countryYearPopulation.value
+		}
+	}
+		
 }
 
 // How many more million people lived in india in 2010 than united states.
