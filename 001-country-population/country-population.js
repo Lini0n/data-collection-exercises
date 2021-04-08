@@ -46,9 +46,21 @@ function avarageUsPopulationFromAllPeriod() {
 	return Math.round(peopleCount / yearsCount);
 }
 
-// How many people live in India between years 1990-2000 on avarage.
+// How many people live in USA between years 1990-2000 on avarage.
 function avarageUsPopulationBetweenYear1990To2000() {
-	throw new Error('Not implemented');
+	let peopleCount = 0;
+	let yearsCount = 0;
+	for(const countryYearPopulation of data){
+		if(countryYearPopulation.countryiso3code === "USA"){
+			
+			let numCountryYearpopulation = Number(countryYearPopulation.date);
+			if(numCountryYearpopulation <= 2000 && numCountryYearpopulation >= 1990){
+				peopleCount += countryYearPopulation.value;
+				yearsCount++;
+			}
+		}
+	}
+	return Math.round(peopleCount / yearsCount);
 }
 
 module.exports = {
