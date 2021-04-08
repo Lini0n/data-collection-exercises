@@ -11,10 +11,18 @@ describe('country-population', () => {
 	});
 
 	describe('.howManyMoreMillionPeopleLivedIndiaVsUsIn2010()', () => {
-		it('in India live that many more people live ', () => {
+		it('returns a number how many millions of less people lived in Usa vs India in year 2010', () => {
 			const result = countryPopulation.howManyMoreMillionPeopleLivedIndiaVsUsIn2010();
 
 			assert.strictEqual(result, 925);
 		});
 	});
+
+	describe('.avarageUsPopulationFromAllPeriod()', () => {
+		it('returns a avarage number of people lived in united states over the period of the data-set', () => {
+			const result = countryPopulation.avarageUsPopulationFromAllPeriod();
+
+			assert.strictEqual(result, 253773772);
+		});
+	})
 });
