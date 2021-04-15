@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 001-country-population",
-    "test-watch": "mocha 001-country-population -w"
+    "test": "mocha 0* --recursive",
+    "test-watch": "mocha 0* --recursive -w"
   },
   "repository": {
     "type": "git",
