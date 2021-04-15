@@ -1,0 +1,1 @@
+We are pharmacy company Jüri & Jüri. We promised to vaccinate the whole Estlanida, if they would provided us every citycens health data. As Estlandia is e-country our hopes were hight. This is all we got :)
