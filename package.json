@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 0* --recursive",
-    "test-watch": "mocha 0* --recursive -w"
+    "test": "mocha --recursive test",
+    "test-watch": "mocha --recursive test -w"
   },
   "repository": {
     "type": "git",

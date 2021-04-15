@@ -1,5 +1,5 @@
 const assert = require('assert');
-const estlandiaCoronaStatistics = require('./estlandia-corona-statistics');
+const estlandiaCoronaStatistics = require('../002-estlandia-corona-statistics/estlandia-corona-statistics');
 
 describe('estlandia-corona-statistics', () => {
 	describe('.percentageSickPeople()', () => {

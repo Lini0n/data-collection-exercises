@@ -1,5 +1,5 @@
 const assert = require('assert');
-const countryPopulation = require('./country-population');
+const countryPopulation = require('../001-country-population/country-population');
 
 describe('country-population', () => {
 	describe('.indiaPopulationInYear1990()', () => {
