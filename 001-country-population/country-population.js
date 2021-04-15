@@ -8,6 +8,7 @@ function indiaPopulationInYear1990() {
 	// 	}
 	// }
 	const indPopulation = data.find(element => (element.date === "1990" && element.countryiso3code ==="IND"));
+	
 	return indPopulation.value;
 }
 
@@ -27,8 +28,11 @@ function howManyMoreMillionPeopleLivedIndiaVsUsIn2010() {
 	// }
 	// const indMinusUsapopulation = Math.round((indPopulation2010 - usaPopulation2010)/ 1000 / 1000);
 	// return indMinusUsapopulation;
-	const a = data.filter(element => element.date === "2010");
-	return Math.round((a[1].value - a[0].value) /1000 / 1000);
+
+	const usaPopulation2010 = data.find(countryInfo => countryInfo.countryiso3code === "USA" && countryInfo.date === "2010");
+	const indPopulation2010 = data.find(countryInfo => countryInfo.countryiso3code === "IND" && countryInfo.date === "2010");
+	
+	return Math.round((indPopulation2010.value - usaPopulation2010.value) /1000 / 1000);
 }
 
 // Over all the provided years, how many people lived in united states on avarage.
@@ -44,15 +48,26 @@ function avarageUsPopulationFromAllPeriod() {
 	// 	}
 	// }
 	// return Math.round(peopleCount / yearsCount);
-	let YearCounter = 0;
-	let totalPopulationNumber = 0;
-	data.forEach( element => {
-		if(element.countryiso3code ==="USA"){
-			YearCounter++;
-			totalPopulationNumber += element.value;
-		}
-	})
-	return Math.round(totalPopulationNumber / YearCounter);
+
+
+	// let YearCounter = 0;
+	// let totalPopulationNumber = 0;
+	// data.forEach( element => {
+	// 	if(element.countryiso3code ==="USA"){
+	// 		YearCounter++;
+	// 		totalPopulationNumber += element.value;
+	// 	}
+	// })
+	// return Math.round(totalPopulationNumber / YearCounter);
+
+	const usaPopulationInfo = data.filter( countryInfo => countryInfo.countryiso3code === "USA");
+	const infoAmont = usaPopulationInfo.length;
+	const usaPopulationSum = usaPopulationInfo.reduce((populationSum, populationInYear) =>{
+		return populationSum + populationInYear.value;
+	}, 0)
+
+	return Math.round(usaPopulationSum / infoAmont);
+
 }
 
 // How many people live in USA between years 1990-2000 on avarage.
@@ -70,17 +85,21 @@ function avarageUsPopulationBetweenYear1990To2000() {
 	// 	}
 	// }
 	// return Math.round(peopleCount / yearsCount);
-	let yearCount = 0;
-	const sum = data.reduce((accumulator, currentValue) => {
-		if(parseInt(currentValue.date) <= 2000 && parseInt(currentValue.date) >= 1990 && currentValue.countryiso3code === "USA"){
-			yearCount++;
-			return accumulator + currentValue.value;
-		}
-		return accumulator;		
+	
+	const usaCountryInfo1990_2000 = data.filter(countryInfo => {
+		const countryYear = parseInt(countryInfo.date);
+
+		return countryInfo.countryiso3code === "USA" 
+		&& countryYear >= 1990 
+		&& countryYear <= 2000
+	})
+
+	const usaCountryInfo1990_2000_sum = usaCountryInfo1990_2000.reduce((yearsHumans, thatYearHumans) => {
+		return yearsHumans + thatYearHumans.value;
 	},0)
-	return Math.round(sum / yearCount);
+	return Math.round(usaCountryInfo1990_2000_sum / usaCountryInfo1990_2000.length);
 }
-avarageUsPopulationBetweenYear1990To2000();
+
 module.exports = {
 	indiaPopulationInYear1990,
 	howManyMoreMillionPeopleLivedIndiaVsUsIn2010,
