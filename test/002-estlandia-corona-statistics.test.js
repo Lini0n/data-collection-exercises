@@ -29,4 +29,20 @@ describe('estlandia-corona-statistics', () => {
 			assert.strictEqual(result, 696);
 		});
 	});
+
+	describe('.mostPopularLastName()', () => {
+		it('returns most popular last name', () => {
+			const result = estlandiaCoronaStatistics.mostPopularLastName();
+
+			assert.strictEqual(result, 'Howell');
+		});
+	});
+
+	describe('.mostPopularEmailProviderDomain()', () => {
+		it('returns most popular email provider domain', () => {
+			const result = estlandiaCoronaStatistics.mostPopularEmailProviderDomain();
+
+			assert.strictEqual(result, 'yahoo.com');
+		});
+	});
 });
