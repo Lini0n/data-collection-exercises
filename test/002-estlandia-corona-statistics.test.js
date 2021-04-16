@@ -45,4 +45,12 @@ describe('estlandia-corona-statistics', () => {
 			assert.strictEqual(result, 'yahoo.com');
 		});
 	});
+
+	describe('.maleNameHavingMostPopularLastNameAndMaleFirstName()', () => {
+		it('returns most popular male first name plus last domain', () => {
+			const result = estlandiaCoronaStatistics.mostPopularEmailProviderDomain();
+
+			assert.strictEqual(result, 'Ronnie Howell');
+		});
+	});
 });

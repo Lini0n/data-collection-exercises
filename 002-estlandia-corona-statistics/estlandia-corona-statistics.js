@@ -20,9 +20,14 @@ function mostPopularEmailProviderDomain() {
     throw new Error('not implemented');
 }
 
+function maleNameHavingMostPopularLastNameAndMaleFirstName() {
+    throw new Error('not implemented');
+}
+
 module.exports = {
     percentageSickPeople,
     numberOfRecoveredPeopleBornInThisMillenia,
     mostPopularLastName,
     mostPopularEmailProviderDomain,
+    maleNameHavingMostPopularLastNameAndMaleFirstName,
 };
