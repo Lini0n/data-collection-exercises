@@ -27,7 +27,7 @@ describe('country-population', () => {
 	});
 
 
-	describe.only('.avarageUsPopulationBetweenYear1990To2000()', () => {
+	describe('.avarageUsPopulationBetweenYear1990To2000()', () => {
 		it('returns a avarage number of people lived in united states during 1990 and 2000', () => {
 			const result = countryPopulation.avarageUsPopulationBetweenYear1990To2000();
 
