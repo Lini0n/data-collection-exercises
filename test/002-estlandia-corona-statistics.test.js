@@ -48,7 +48,7 @@ describe('estlandia-corona-statistics', () => {
 
 	describe('.maleNameHavingMostPopularLastNameAndMaleFirstName()', () => {
 		it('returns most popular male first name plus last domain', () => {
-			const result = estlandiaCoronaStatistics.mostPopularEmailProviderDomain();
+			const result = estlandiaCoronaStatistics.maleNameHavingMostPopularLastNameAndMaleFirstName();
 
 			assert.strictEqual(result, 'Ronnie Howell');
 		});

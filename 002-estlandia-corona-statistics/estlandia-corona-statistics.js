@@ -1,5 +1,35 @@
 const data = require('./estlandia-corona-statistics.json');
 
+//elements need array like ['name', 'name']
+function mostOccuring(elements){
+    let mostOccuredElement = "";
+    let numberOfMostOccuredELement = 0;
+    let elementsArray = elements;
+    //console.log('ELEMENTS in ARRAY : ', elementsArray.length);
+
+    while(elementsArray.length !== 0){
+        const currenFirsElement = elementsArray[0];
+        let occuredNumber = 0;
+
+        elementsArray = elementsArray.filter(items => {
+            if(items === currenFirsElement){
+                occuredNumber++;
+            }
+            return items !== elementsArray[0];
+        })
+        //console.log(currenFirsElement, 'has occured', occuredNumber);
+
+        if(occuredNumber > numberOfMostOccuredELement){
+            numberOfMostOccuredELement = occuredNumber;
+            mostOccuredElement = currenFirsElement;   
+        }
+    }
+    //console.log('most occured item was', mostOccuredElement ,' it was there :', numberOfMostOccuredELement, 'times');
+    return mostOccuredElement;
+}
+
+//console.log(mostOccuring(['anti', 'kalle', 'hans', 'konn', 'konn', 'kalle', 'konn']));
+
 function allCoronaStatusesInAlpapheticalOrder() {
     const endList = [];
     let list = data;
@@ -61,16 +91,39 @@ function mostPopularLastName() {
     //     })
     // }
     // console.log(humansData[0]);
-    throw new Error('not implemented');
-
+    
+    const lastNames = [];
+    data.forEach(human => {
+        let personName = human.name.split(' ');
+        lastNames.push(personName[1]);
+    });
+    return mostOccuring(lastNames);
 }
 
 function mostPopularEmailProviderDomain() {
-    throw new Error('not implemented');
+    const humanEmails = [];
+    data.forEach(human => {
+        let personEmail = human.email.split('@');
+        humanEmails.push(personEmail[1]);
+    });
+    return mostOccuring(humanEmails);
 }
 
 function maleNameHavingMostPopularLastNameAndMaleFirstName() {
-    throw new Error('not implemented');
+    const lastNames = [];
+    const firstNames = [];
+
+    data.forEach(humans => {
+        let personName = humans.name.split(' ');
+        firstNames.push(personName[0]);
+        lastNames.push(personName[1]);
+    });
+
+    const popularestFullName = mostOccuring(firstNames) 
+    + ' ' 
+    + mostOccuring(lastNames);
+
+    return popularestFullName;
 }
 
 module.exports = {
