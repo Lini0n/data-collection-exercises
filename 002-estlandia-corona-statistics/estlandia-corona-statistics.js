@@ -1,3 +1,4 @@
+const { interfaces } = require('mocha');
 const data = require('./estlandia-corona-statistics.json');
 
 //elements need array like ['name', 'name']
@@ -31,19 +32,36 @@ function mostOccuring(elements){
 //console.log(mostOccuring(['anti', 'kalle', 'hans', 'konn', 'konn', 'kalle', 'konn']));
 
 function allCoronaStatusesInAlpapheticalOrder() {
-    const endList = [];
-    let list = data;
+    // let list = data;
 
-    while(list.length !== 0){
-        const firstStatusInList = list[0].coronaStatus;
+    // while(list.length !== 0){
+    //     const firstStatusInList = list[0].coronaStatus;
 
-        if(!endList.includes(firstStatusInList)){
-            endList.push(firstStatusInList);
+    //     if(!endList.includes(firstStatusInList)){
+    //         endList.push(firstStatusInList);
+    //     }
+
+    //     list = list.filter(humansInfo => humansInfo.coronaStatus !== firstStatusInList)
+    // }
+
+    // data.forEach(humansInfo => {
+    //     if(!coronaStatuses.includes(humansInfo.coronaStatus)){
+    //         coronaStatuses.push(humansInfo.coronaStatus);
+    //     }
+    // });
+
+    const coronaStatuses = data.reduce((uniqeStatuses, currentStatuses) => {
+        if(!uniqeStatuses.includes(currentStatuses.coronaStatus)){
+            return uniqeStatuses.concat(currentStatuses.coronaStatus);
         }
-        list = list.filter(humansInfo => humansInfo.coronaStatus !== firstStatusInList)
-    }
-    endList.sort();
-    return endList;
+
+        return uniqeStatuses;
+    },[]);
+
+
+    coronaStatuses.sort();
+
+    return coronaStatuses;
 }
 
 
@@ -52,9 +70,9 @@ function percentageSickPeople() {
 
     const sickPeople = data.filter(peopleInfo => peopleInfo.coronaStatus === "sick");
     const numberOfSick = sickPeople.length;
+    const percentOfSick = Math.round(numberOfSick / numberOfPeople * 100);
 
-    const procentOfSick = Math.round(numberOfSick / numberOfPeople * 100);
-    return procentOfSick
+    return percentOfSick
 }
 
 function numberOfRecoveredPeopleBornInThisMillenia() {
@@ -65,6 +83,7 @@ function numberOfRecoveredPeopleBornInThisMillenia() {
         return humansInfo.coronaStatus === "recovered"
             && parseInt(humansInfo.idCode.slice(1, 3)) <= currentYear - 2000;
     });
+
     return recoverdPeople.length;
 }
 
@@ -92,16 +111,54 @@ function mostPopularLastName() {
     // }
     // console.log(humansData[0]);
     
-    const lastNames = [];
-    data.forEach(human => {
-        let personName = human.name.split(' ');
-        lastNames.push(personName[1]);
-    });
-    return mostOccuring(lastNames);
+    // const lastNames = [];
+
+    // data.forEach(human => {
+    //     let personName = human.name.split(' ');
+    //     lastNames.push(personName[1]);
+    // });
+
+
+    // const lastNames = data.map(humanInfo =>{
+    //     return humanInfo.name.split(' ')[1];
+    // }) 
+
+    // return mostOccuring(lastNames);
+
+    const occured = {
+        "kalle" : 3,
+        "muri" : 2,
+        "mati" : 5
+    }
+
+    const occuredNamesObject = data.reduce((occuredLastNames, personInfo) => {
+        const lastName = personInfo.name.split(' ')[1];
+        
+        if(occuredLastNames[lastName] === undefined){
+            occuredLastNames[lastName] = 1;
+            return occuredLastNames
+        }
+
+        occuredLastNames[lastName]++;
+
+        return occuredLastNames;
+    },{});
+    
+    let mostOccuredName = "";
+    let numberMostNameOccured = 0;
+    for(const[key, value] of Object.entries(occuredNamesObject)){
+        if(value > numberMostNameOccured){
+            mostOccuredName = key;
+            numberMostNameOccured = value
+        }
+    }
+
+    return mostOccuredName;
 }
 
 function mostPopularEmailProviderDomain() {
     const humanEmails = [];
+
     data.forEach(human => {
         let personEmail = human.email.split('@');
         humanEmails.push(personEmail[1]);
