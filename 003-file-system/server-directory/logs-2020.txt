@@ -1,2 +1,2 @@
-bla
-faa
+INFO: starting server
+INFO: server started
