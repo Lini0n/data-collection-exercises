@@ -125,16 +125,16 @@ function mostPopularLastName() {
 
     // return mostOccuring(lastNames);
 
-    const occured = {
-        "kalle" : 3,
-        "muri" : 2,
-        "mati" : 5
-    }
+    // const occured = {
+    //     "kalle" : 3,
+    //     "muri" : 2,
+    //     "mati" : 5
+    // }
 
     const occuredNamesObject = data.reduce((occuredLastNames, personInfo) => {
         const lastName = personInfo.name.split(' ')[1];
         
-        if(occuredLastNames[lastName] === undefined){
+        if(occuredLastNames[lastName] === undefined) {
             occuredLastNames[lastName] = 1;
             return occuredLastNames
         }
@@ -144,16 +144,22 @@ function mostPopularLastName() {
         return occuredLastNames;
     },{});
     
-    let mostOccuredName = "";
-    let numberMostNameOccured = 0;
-    for(const[key, value] of Object.entries(occuredNamesObject)){
-        if(value > numberMostNameOccured){
-            mostOccuredName = key;
-            numberMostNameOccured = value
+    // let mostOccuredName = "";
+    // let numberMostNameOccured = 0;
+
+    const mostOccuredName = {
+        name: "",
+        timesOccured: 0
+    };
+
+    for(const[key, value] of Object.entries(occuredNamesObject)) {
+        if(value > mostOccuredName.timesOccured){
+            mostOccuredName.name = key;
+            mostOccuredName.timesOccured = value
         }
     }
 
-    return mostOccuredName;
+    return mostOccuredName.name;
 }
 
 function mostPopularEmailProviderDomain() {
