@@ -31,4 +31,17 @@ describe('estlandia-corona-statistics', () => {
 			});
 		});
 	});
+
+	describe('.getAllTxtFileNamesRecursive()', () => {
+		it('all text file names', async () => {
+			const result = await fileSystem.getAllTxtFileNamesRecursive('003-file-system/server-directory');
+
+			assert.deepStrictEqual(result, [
+				'api-logs-2021.txt',
+				'logs-2020.txt',
+				'logs-2021.txt',
+				'webapp-logs-2020.txt',
+			]);
+		});
+	});
 });
